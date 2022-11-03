@@ -1,0 +1,112 @@
+//
+//  project2.cpp
+//  
+//
+//  Created by Nabeel Latifi on 10/1/21.
+//
+//Vector object
+#include <stdio.h>
+#include <iostream>
+#include<iomanip>
+#include <cmath>
+#include<string>
+using namespace std;
+class Vector{
+private:
+    double x;
+    double y;
+    friend string show(Vector);
+    friend Vector subtract(Vector*,Vector*);
+public:
+    Vector(double xcomp = 0,double ycomp = 0);
+    Vector normalize();
+    double dot_product(Vector);
+    Vector reverse();
+    Vector flip_sign();
+    Vector operator *(int n){
+        Vector v3;
+        v3.x = x*n;
+        v3.y = y*n;
+        return v3;
+    }
+    Vector operator + (Vector v2){
+        Vector v3;
+        v3.x = x + v2.x;
+        v3.y = y + v2.y;
+        return v3;
+    }
+    
+};
+
+Vector :: Vector(double xcomp, double ycomp){
+    x = xcomp;
+    y = ycomp;
+}
+string show(Vector v1){
+    return "<" + to_string(v1.x) + "," + to_string(v1.y) + ">";
+}
+Vector Vector:: normalize(){
+    Vector v3;
+    double a;
+    a = sqrt(x*x + y*y);
+    v3.x = x/a;
+    v3.y = y/a;
+    return v3;
+}
+double Vector:: dot_product(Vector v2){
+    double scalar = (x*v2.x) + (y*v2.y);
+    return scalar;
+    
+}
+
+Vector subtract(Vector *v1, Vector *v2){
+    Vector v3;
+    v3.x = v1 -> x - v2 -> x;
+    v3.y = v1 -> y - v2 -> y;
+    return v3;
+}
+Vector Vector::reverse(){
+    Vector v3;
+    double temp = x;
+    v3.x = y;
+    v3.y = temp;
+    return v3;
+}
+Vector Vector:: flip_sign(){
+    Vector v3;
+    v3.x = x*-1;
+    v3.y = y*-1;
+    return v3;
+}
+int main() {
+/* this is how we generate instances of Vectors [5 Points]*/
+Vector v1(2,1);
+Vector v2(4,-5);
+
+/* output format of a Vector */
+// [5 Points] for correct show() function
+// prints to screen vector of the form <2.000000, 1.000000>
+cout << show(v1) << endl;
+cout << show(v2) << endl;
+/* these functions RETURN values and with COUT we print their results to screen.
+NOTE: some of these calls are not complete, cout alone may not be enough.
+add the appropriate code/type declaration to produce proper results.
+in summary, make it work, without changing names of functions.
+*/
+// [5 Points] returns (Vector) the unit vector form of v1
+cout << show(v1.normalize()) << endl;
+// [5 Points] returns (double scalar) the dot product of v1 and v2
+cout << v1.dot_product(v2) << endl;
+// [5 Points] returns (Vector) with both coordinates multiplied by 3.
+// value like 3 is always integer
+cout << show(v1*3) << endl;
+// [5 Points] returns Vector sum of v1 and v2
+cout << show(v1+v2) << endl;
+// [10 Points] returns (Vector) difference of v1 and v2. note the address of symbol
+cout << show(subtract(&v1, &v2)) << endl;
+// [5 Points] returns (Vector) -v1. that is, negated version of v1
+cout << show(v1.flip_sign()) << endl;
+// [5 Points] returns (Vector) reversed version of v1, ie. <x,y> becomes <y,x>
+cout << show(v1.reverse()) << endl;
+return 0;
+}

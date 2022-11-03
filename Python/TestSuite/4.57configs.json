@@ -1,0 +1,10 @@
+{
+    "description": "1d example: 2 base stations 2m apart",
+    "speed": 346.3,
+    "tsep": 0.1,
+    "base_stations":
+    [
+        [0.0],
+        [4.63]
+    ]
+}
