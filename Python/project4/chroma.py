@@ -1,6 +1,3 @@
-#I Nabeel Latifi
-#worked on this project in accorance with the syallabus
-#Project 3 
 
 """Builds a chromaticity tree with certain operations"""
 class Chroma:

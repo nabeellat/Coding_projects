@@ -1,5 +1,5 @@
 #Nabeel Latifi
-#Did not do this part 
+
 
 """
 Reads a list of chromaticities and names from the CSV file
